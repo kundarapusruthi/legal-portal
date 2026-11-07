@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 
 const RIGHTS = [
   {
@@ -73,10 +74,11 @@ const RIGHTS = [
 export default function Rights() {
   return (
     <div className="container">
-      <h2>📜 Know your legal rights</h2>
-      <p className="muted">
-        Tap a topic to read the key rights in simple language. This is general information, so the details can vary by state and situation.
-      </p>
+      <PageHeader
+        icon="📜"
+        title="Know your legal rights"
+        subtitle="Tap a topic to read the key rights in simple language. Details can vary by state and situation."
+      />
 
       {RIGHTS.map((r, i) => (
         <details className="card" key={r.title} open={i === 0}>

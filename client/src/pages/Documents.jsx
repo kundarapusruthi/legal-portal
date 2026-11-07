@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PageHeader from "../components/PageHeader";
 
 const GUIDE = {
   "Filing an FIR / police complaint": [
@@ -54,8 +55,11 @@ export default function Documents() {
 
   return (
     <div className="container">
-      <h2>📄 Document guidance</h2>
-      <p className="muted">Select your type of case to see which documents to keep ready.</p>
+      <PageHeader
+        icon="📄"
+        title="Documents you will need"
+        subtitle="Choose your type of case to see which papers to keep ready."
+      />
 
       <div className="chips">
         {topics.map((t) => (

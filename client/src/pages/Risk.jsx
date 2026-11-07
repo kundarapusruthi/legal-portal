@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 
-// riskIf = the answer ("yes" or "no") that adds risk points
 const TOPICS = {
   consumer: {
     label: "Consumer complaint",
-    category: "Consumer",
     questions: [
       { id: "bill", text: "Do you have the bill or payment receipt?", riskIf: "no", points: 2, tip: "Without a bill, proving the purchase is harder. Look for bank or UPI statements, order emails or the warranty card." },
       { id: "proof", text: "Do you have photos, videos or reports showing the defect?", riskIf: "no", points: 2, tip: "Record clear photos or videos of the problem before anything changes." },
@@ -20,7 +19,6 @@ const TOPICS = {
   },
   rental: {
     label: "Rent / landlord dispute",
-    category: "Property",
     questions: [
       { id: "agreement", text: "Do you have a written rent agreement?", riskIf: "no", points: 2, tip: "A verbal arrangement is hard to prove. Ask for a written agreement and keep proof of every payment." },
       { id: "deposit", text: "Do you have proof that you paid the security deposit?", riskIf: "no", points: 2, tip: "Look for bank transfers, UPI records or a signed receipt." },
@@ -35,7 +33,6 @@ const TOPICS = {
   },
   cyber: {
     label: "Cyber fraud",
-    category: "Cyber",
     questions: [
       { id: "money", text: "Has money already been taken from your account?", riskIf: "yes", points: 3, tip: "Call 1930 immediately. The first hours matter most for freezing the money." },
       { id: "late", text: "Did it happen more than 24 hours ago?", riskIf: "yes", points: 2, tip: "Report right away anyway. Delays reduce the chance of recovery." },
@@ -50,7 +47,6 @@ const TOPICS = {
   },
   employment: {
     label: "Job / salary problem",
-    category: "Labour",
     questions: [
       { id: "letter", text: "Do you have an appointment letter or employment contract?", riskIf: "no", points: 2, tip: "Gather any proof of employment such as emails, ID cards or offer letters." },
       { id: "slips", text: "Do you have salary slips or bank statements showing your pay?", riskIf: "no", points: 2, tip: "Bank statements can prove your salary history." },
@@ -95,10 +91,11 @@ export default function Risk() {
 
   return (
     <div className="container">
-      <h2>⚠️ Legal risk assessment</h2>
-      <p className="muted">
-        Answer a few quick questions to see how prepared your situation is and what to do next. This is an indicative checklist, not legal advice.
-      </p>
+      <PageHeader
+        icon="⚠️"
+        title="Legal risk check"
+        subtitle="Answer a few quick questions to see how prepared your case is and what to do next. This is an indicative checklist, not legal advice."
+      />
 
       <div className="chips">
         {Object.entries(TOPICS).map(([id, t]) => (
@@ -131,7 +128,7 @@ export default function Risk() {
             </div>
           </div>
         ))}
-        <button className="btn" style={{ marginTop: 12 }} disabled={!complete} onClick={assess}>
+        <button className="btn" style={{ marginTop: 14 }} disabled={!complete} onClick={assess}>
           Assess my risk
         </button>
       </div>

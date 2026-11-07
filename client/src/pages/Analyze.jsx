@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BASE } from "../api";
 import { useAuth } from "../AuthContext";
+import PageHeader from "../components/PageHeader";
 
 const SEV = { Low: "confirmed", Medium: "pending", High: "cancelled" };
 
@@ -39,7 +40,8 @@ export default function Analyze() {
     return (
       <div className="container narrow">
         <div className="card" style={{ textAlign: "center" }}>
-          <h2>🔍 Document analysis</h2>
+          <div style={{ fontSize: 40 }}>🔍</div>
+          <h2>AI document analysis</h2>
           <p>Please log in to analyse a document.</p>
           <Link to="/login" state={{ from: "/analyze" }} className="btn">Log in</Link>
         </div>
@@ -48,13 +50,14 @@ export default function Analyze() {
 
   return (
     <div className="container">
-      <h2>🔍 AI document analysis</h2>
-      <p className="muted">
-        Upload a PDF such as a rent agreement, legal notice or contract. We'll explain it in simple language and point out clauses that may need attention.
-      </p>
+      <PageHeader
+        icon="🔍"
+        title="AI document analysis"
+        subtitle="Upload a PDF and get a plain-language summary and the clauses that need attention."
+      />
 
       <div className="card">
-        <label>PDF file (max 5 MB)</label>
+        <label style={{ marginTop: 0 }}>PDF file (max 5 MB)</label>
         <input
           type="file"
           accept="application/pdf"
@@ -67,7 +70,7 @@ export default function Analyze() {
           <option>Telugu</option>
         </select>
         {error && <p className="error">{error}</p>}
-        <button className="btn" style={{ marginTop: 10 }} disabled={!file || busy} onClick={analyse}>
+        <button className="btn" style={{ marginTop: 12 }} disabled={!file || busy} onClick={analyse}>
           {busy ? "Analysing... this can take up to 30 seconds" : "Analyse document"}
         </button>
         <p className="muted" style={{ marginTop: 10 }}>

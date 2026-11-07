@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
 import { useAuth } from "../AuthContext";
+import PageHeader from "../components/PageHeader";
 
 const PROCEDURES = {
   criminal: {
@@ -176,7 +177,9 @@ function Tracker() {
         <label>Notes (optional)</label>
         <textarea rows={2} value={form.notes} onChange={set("notes")} />
         {error && <p className="error">{error}</p>}
-        <button className="btn" onClick={add} disabled={busy}>{busy ? "Saving..." : "Add case"}</button>
+        <button className="btn" style={{ marginTop: 12 }} onClick={add} disabled={busy}>
+          {busy ? "Saving..." : "Add case"}
+        </button>
       </div>
 
       <div className="card row between">
@@ -249,8 +252,11 @@ export default function Court() {
   const [tab, setTab] = useState("guide");
   return (
     <div className="container">
-      <h2>⚖️ Court procedure and case tracker</h2>
-      <p className="muted">Understand the stages of a case and keep track of your own case and hearing dates.</p>
+      <PageHeader
+        icon="🏛️"
+        title="Court procedure and case tracker"
+        subtitle="Understand the stages of a case and track your own hearings."
+      />
       <div className="tabs">
         <button className={`tab ${tab === "guide" ? "active" : ""}`} onClick={() => setTab("guide")}>Procedure guide</button>
         <button className={`tab ${tab === "tracker" ? "active" : ""}`} onClick={() => setTab("tracker")}>My cases</button>

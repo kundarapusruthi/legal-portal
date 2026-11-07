@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../api";
+import PageHeader from "../components/PageHeader";
 
 const localToday = () =>
   new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
@@ -44,7 +45,7 @@ export default function Book() {
       setDone(true);
     } catch (err) {
       setError(err.message);
-      loadSlots(date); // refresh in case the slot was just taken
+      loadSlots(date);
       setSlot("");
     }
     setBusy(false);
@@ -56,9 +57,7 @@ export default function Book() {
         <div className="card" style={{ textAlign: "center" }}>
           <div style={{ fontSize: 48 }}>✅</div>
           <h2>Appointment requested</h2>
-          <p>
-            {lawyer?.name} · {date} at {slot}
-          </p>
+          <p>{lawyer?.name} · {date} at {slot}</p>
           <p className="muted">Status: pending confirmation.</p>
           <Link to="/appointments" className="btn">View my appointments</Link>
         </div>
@@ -67,7 +66,12 @@ export default function Book() {
 
   return (
     <div className="container narrow">
-      <h2>📅 Book an appointment</h2>
+      <PageHeader
+        icon="📅"
+        title="Book a consultation"
+        subtitle="Pick a date and a free time slot. The lawyer will confirm your request."
+      />
+
       {lawyer && (
         <div className="card lawyer">
           <div className="avatar">{lawyer.name.replace("Adv. ", "").charAt(0)}</div>
@@ -80,7 +84,7 @@ export default function Book() {
       )}
 
       <div className="card">
-        <label>Choose a date</label>
+        <label style={{ marginTop: 0 }}>Choose a date</label>
         <input type="date" min={localToday()} value={date} onChange={(e) => setDate(e.target.value)} />
 
         {date && (
@@ -104,7 +108,7 @@ export default function Book() {
         <textarea rows={3} value={problem} onChange={(e) => setProblem(e.target.value)} />
 
         {error && <p className="error">{error}</p>}
-        <button className="btn" disabled={!date || !slot || busy} onClick={book}>
+        <button className="btn" style={{ marginTop: 10 }} disabled={!date || !slot || busy} onClick={book}>
           {busy ? "Booking..." : "Confirm booking"}
         </button>
       </div>

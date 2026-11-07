@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
+import PageHeader from "../components/PageHeader";
 
 export default function Appointments() {
   const [list, setList] = useState(null);
   const [error, setError] = useState("");
 
-  const load = () =>
-    api("/appointments/mine").then(setList).catch((e) => setError(e.message));
+  const load = () => api("/appointments/mine").then(setList).catch((e) => setError(e.message));
 
   useEffect(() => { load(); }, []);
 
@@ -23,7 +23,7 @@ export default function Appointments() {
 
   return (
     <div className="container">
-      <h2>📅 My appointments</h2>
+      <PageHeader icon="🗓️" title="My appointments" subtitle="View, track and cancel your consultations." />
       {error && <p className="error">{error}</p>}
       {list === null && !error && <p>Loading...</p>}
       {list?.length === 0 && (

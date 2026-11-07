@@ -1,3 +1,5 @@
+import PageHeader from "../components/PageHeader";
+
 const STEPS = [
   {
     title: "Act fast if money was lost",
@@ -28,7 +30,12 @@ const STEPS = [
 export default function CyberHelp() {
   return (
     <div className="container">
-      <h2>🛡️ Cybercrime complaint guide</h2>
+      <PageHeader
+        icon="🛡️"
+        title="Cybercrime complaint guide"
+        subtitle="Follow these steps if you are a victim of online fraud or harassment."
+      />
+
       <div className="alert">
         <b>Lost money in an online fraud?</b> Call <b>1930</b> right away, then follow the steps below.
         In an emergency or if someone is in danger, call <b>112</b>.

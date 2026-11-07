@@ -30,8 +30,10 @@ export default function Auth({ mode }) {
   return (
     <div className="container narrow">
       <div className="card">
-        <h2>{isSignup ? "Create your account" : "Welcome back"}</h2>
-        <p className="muted">{isSignup ? "Sign up to book appointments with lawyers." : "Log in to continue."}</p>
+        <h2>{isSignup ? "Create your free account" : "Welcome back"}</h2>
+        <p className="muted">
+          {isSignup ? "Book lawyers, track cases and analyse documents." : "Log in to continue where you left off."}
+        </p>
         {isSignup && (
           <>
             <label>Full name</label>
@@ -43,13 +45,22 @@ export default function Auth({ mode }) {
         <label>Email</label>
         <input type="email" value={form.email} onChange={set("email")} />
         <label>Password</label>
-        <input type="password" value={form.password} onChange={set("password")} onKeyDown={(e) => e.key === "Enter" && submit()} />
+        <input
+          type="password"
+          value={form.password}
+          onChange={set("password")}
+          onKeyDown={(e) => e.key === "Enter" && submit()}
+        />
         {error && <p className="error">{error}</p>}
-        <button className="btn" style={{ width: "100%", marginTop: 10 }} onClick={submit} disabled={busy}>
+        <button className="btn" style={{ width: "100%", marginTop: 12 }} onClick={submit} disabled={busy}>
           {busy ? "Please wait..." : isSignup ? "Sign up" : "Log in"}
         </button>
         <p className="muted" style={{ marginTop: 14, textAlign: "center" }}>
-          {isSignup ? <>Already registered? <Link to="/login">Log in</Link></> : <>New here? <Link to="/signup">Create an account</Link></>}
+          {isSignup ? (
+            <>Already registered? <Link to="/login">Log in</Link></>
+          ) : (
+            <>New here? <Link to="/signup">Create an account</Link></>
+          )}
         </p>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
 import { useAuth } from "../AuthContext";
+import PageHeader from "../components/PageHeader";
 
 function LawyerCard({ lawyer }) {
   return (
@@ -52,11 +53,14 @@ export default function FindLawyer() {
 
   return (
     <div className="container">
-      <h2>🔎 Find the right lawyer</h2>
-      <p className="muted">Describe your problem in your own words. We'll identify the area of law and suggest lawyers.</p>
+      <PageHeader
+        icon="🔎"
+        title="Find the right lawyer"
+        subtitle="Describe what happened in your own words. We'll identify the area of law and suggest matching lawyers."
+      />
 
       <div className="card">
-        <label>What happened?</label>
+        <label style={{ marginTop: 0 }}>What happened?</label>
         <textarea
           rows={4}
           value={problem}
@@ -66,7 +70,7 @@ export default function FindLawyer() {
         <label>Your city (optional)</label>
         <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Hyderabad" />
         {error && <p className="error">{error}</p>}
-        <button className="btn" onClick={analyse} disabled={loading}>
+        <button className="btn" style={{ marginTop: 10 }} onClick={analyse} disabled={loading}>
           {loading ? "Analysing..." : "Analyse my problem"}
         </button>
       </div>
@@ -82,9 +86,7 @@ export default function FindLawyer() {
         </div>
       )}
 
-      <h3 style={{ margin: "18px 0 10px" }}>
-        {result ? "Matching lawyers" : "All lawyers"}
-      </h3>
+      <h3 style={{ margin: "18px 0 10px" }}>{result ? "Matching lawyers" : "All lawyers"}</h3>
       {lawyers.length === 0 ? (
         <div className="card">
           No lawyers found{result ? ` for ${result.category}${city ? ` in ${city}` : ""}` : ""}. Try clearing the city field.
