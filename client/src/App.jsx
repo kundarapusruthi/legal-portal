@@ -8,6 +8,10 @@ import Book from "./pages/Book";
 import Appointments from "./pages/Appointments";
 import Documents from "./pages/Documents";
 import CyberHelp from "./pages/CyberHelp";
+import Rights from "./pages/Rights";
+import Risk from "./pages/Risk";
+import Analyze from "./pages/Analyze";
+import Court from "./pages/Court";
 
 function RequireAuth({ children }) {
   const { user } = useAuth();
@@ -25,6 +29,10 @@ function Nav() {
       <NavLink to="/find-lawyer" className={cls}>Find a Lawyer</NavLink>
       <NavLink to="/documents" className={cls}>Documents</NavLink>
       <NavLink to="/cyber-help" className={cls}>Cybercrime Help</NavLink>
+      <NavLink to="/rights" className={cls}>Rights</NavLink>
+      <NavLink to="/risk" className={cls}>Risk Check</NavLink>
+      <NavLink to="/analyze" className={cls}>Analyze Doc</NavLink>
+      <NavLink to="/court" className={cls}>Court Tracker</NavLink>
       {user && <NavLink to="/appointments" className={cls}>My Appointments</NavLink>}
       <span className="spacer" />
       {user ? (
@@ -59,6 +67,10 @@ export default function App() {
           <Route path="/cyber-help" element={<CyberHelp />} />
           <Route path="/login" element={<Auth mode="login" />} />
           <Route path="/signup" element={<Auth mode="signup" />} />
+          <Route path="/rights" element={<Rights />} />
+          <Route path="/risk" element={<Risk />} />
+          <Route path="/analyze" element={<Analyze />} />
+          <Route path="/court" element={<Court />} />
         </Routes>
         <div className="footer">
           This portal gives general legal information, not legal advice. For your specific situation, consult a qualified lawyer.

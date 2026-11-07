@@ -8,6 +8,9 @@ import lawyerRoutes from "./routes/lawyers.js";
 import categoryRoutes from "./routes/category.js";
 import authRoutes from "./routes/auth.js";
 import appointmentRoutes from "./routes/appointments.js";
+import analyzeRoutes from "./routes/analyze.js";
+import caseRoutes from "./routes/cases.js";
+
 
 const app = express();
 app.use(cors());
@@ -19,6 +22,8 @@ app.use("/api/lawyers", lawyerRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/appointments", appointmentRoutes);
+app.use("/api/analyze", analyzeRoutes);
+app.use("/api/cases", caseRoutes);
 
 await connectDB();
 app.listen(process.env.PORT, () =>

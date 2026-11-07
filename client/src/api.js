@@ -1,4 +1,4 @@
-const BASE = "http://localhost:5000/api";
+export const BASE = "http://localhost:5000/api";
 
 export async function api(path, { method = "GET", body } = {}) {
   const headers = { "Content-Type": "application/json" };
